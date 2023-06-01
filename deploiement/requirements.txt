@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+tensorflow
+torch
+transformers
+python-multipart
+sentencepiece
+keras
+sacremoses
