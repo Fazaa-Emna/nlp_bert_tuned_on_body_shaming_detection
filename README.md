@@ -1,6 +1,6 @@
 # Body Shaming Text Classifier
 
-This repository contains a text classifier for identifying body shaming and non-body shaming content in the French language. The classifier is built using the BERT (Bidirectional Encoder Representations from Transformers) model and achieves an accuracy of approximately **94%.**
+This repository contains a text classifier for identifying body shaming and non-body shaming content in the French language. The classifier is built using the BERT (Bidirectional Encoder Representations from Transformers) model and achieves an accuracy of approximately **95%.**
 
 ## Dataset
 
