@@ -1,9 +1,6 @@
 fastapi
 uvicorn
-tensorflow
-torch
-transformers
 python-multipart
-sentencepiece
-keras
-sacremoses
+numpy==1.16.1
+scikit-learn==0.20.2
+memory_profiler

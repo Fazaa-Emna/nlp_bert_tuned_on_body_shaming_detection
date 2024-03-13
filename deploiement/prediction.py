@@ -1,22 +1,33 @@
-from tensorflow.python.ops.numpy_ops import np_config
-np_config.enable_numpy_behavior()
-import joblib
-
+import pickle
+from sklearn.feature_extraction.text import TfidfVectorizer
+from memory_profiler import profile
 
 class BinaryBodyShaming():
     def __init__(self):
-        classifier = joblib.load(f"root/workspace/models/model.pkl")
-        self.trained_model = classifier
-        self.labels= ['insulte du corps', "pas d'insulte"]
-        self.output=['body shaming','not body shaming']
-        return
+        # Load the TF-IDF vectorizer
+        with open("root/workspace/models/vectorizer_SVM.pkl", 'rb') as vec_file:
+            self.vectorizer = pickle.load(vec_file)
 
+        # Load the SVM model
+        with open("root/workspace/models/model_SVM.pkl", 'rb') as model_file:
+            self.model = pickle.load(model_file)
+
+        self.labels = ["pas d'insulte", "insulte du corps"]
+        self.output = ["not body shaming", 'body shaming']
+
+    @profile
     def predict(self, text):
-        res = self.trained_model(text,self.labels)
-        label, proba = res['labels'][0],res['scores'][0]
-        if label == self.labels[0]:
-            label = self.output[0]
-        else:
-            label = self.output[1]
-        return label, proba
-        
+        # Use the fitted vectorizer to convert text to numerical features
+        text_features = self.vectorizer.transform([text])
+        print("Number of features:", text_features.shape[1])
+        # Get the decision function values (confidence scores) from the SVM model
+        decision_values = self.model.decision_function(text_features)
+
+        # Make predictions with the SVM model
+        prediction = self.model.predict(text_features)
+
+        # Extract label and confidence score from predictions
+        label = self.labels[prediction[0]]
+        confidence_score = abs(decision_values[0])  # Using the decision function values as confidence scores
+
+        return label, confidence_score
