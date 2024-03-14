@@ -1,22 +1,18 @@
-# Online Grooming Detector
+**Body Shaming Text Classifier**
+This repository contains a BERT-based text classifier for identifying body shaming content in French text.
 
-## Overview
+**Usage**
+1/Install Docker.
 
-Online Grooming Detector is a project that aims to identify and prevent online grooming using machine learning techniques.
+2/Clone this repository.
 
-## Getting Started
+3/Navigate to the deploiement folder.
 
-### Prerequisites
+4/Run docker-compose up to start the classifier service.
 
-- Python 3.7
-- pip
+5/Access the API at http://localhost:8999.
 
-### Installation
-1. Clone the repository:
+6/Send a POST request with your text to classify.
 
-   ```bash
-   git clone https://github.com/kenjenlee/online-grooming-detector.git
-   cd online-grooming-detector
-
-### Details 
-This repository contains two pretrained models for detecting online grooming using FastAPI: one based on a Support Vector Machine (SVM) classifier trained on a custom dataset, and another based on a Convolutional Neural Network (CNN) trained on the PAN12 Multi-languages dataset.
+**Performance**
+Achieves approximately 96% accuracy on evaluation data.
