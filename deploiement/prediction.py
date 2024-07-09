@@ -1,6 +1,6 @@
 import pickle
 from sklearn.feature_extraction.text import TfidfVectorizer
-from memory_profiler import profile
+
 
 class BinaryBodyShaming():
     def __init__(self):
@@ -15,7 +15,7 @@ class BinaryBodyShaming():
         self.labels = ["pas d'insulte", "insulte du corps"]
         self.output = ["not body shaming", 'body shaming']
 
-    @profile
+    
     def predict(self, text):
         # Use the fitted vectorizer to convert text to numerical features
         text_features = self.vectorizer.transform([text])
